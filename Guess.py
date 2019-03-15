@@ -1,3 +1,6 @@
+#rewriting the program 
+#       ***WARNING!***      
+#  it's really not functional 
 import sys
 from Check import check_r
 from Check import check_c
@@ -9,7 +12,38 @@ from Create import Print
 import time
 
 
-                    
+def filling(matrix,size_v,size_h):
+    changed = True
+    while changed:
+        bspace = by_space(matrix, size_v, size_h)
+        brow = by_row(matrix,size_v,size_h)
+        bcolumn = by_column(matrix, size_v, size__h)
+        bbox = by_box(matrix,size_v,size_h)
+        if bspace or brow or bcolumn or bbox: #as long as there was a change
+            Print(matrix)
+        else:
+            changed = false 
+    if checker(matrix):
+        print "\n Solved! \n"
+    else:
+        choice = Input("""
+The script you entered seems to be a very challenging one, this might take some time, how much of the process would you like to see? Enter the number you would like: 
+ 1. See nothing. 
+ 2. See how deep it is in every choice - This choice may slightly slow down the process.
+ 3. See the entire process - This has a large affect on the processing time.\n""")
+        if choice == 1:
+            matrix = Guess(matrix)
+        elif choice == 2:
+            matrix = Guess_2(matrix,0)
+            print "The stars resemble how many numbers are (temporarily) filled in (into places which the 'legally' fit) and this point"
+        elif choice == 3:
+            matrix = Guess_3(matrix,0)
+            print "Above are listed all the matrix possibilities which we tried"
+        else:
+            print "The choice you entered doesn't exist, the program will just solve it the fastest way"
+            matrix = Guess(matrix)
+        
+        
 def fill(matrix,size_v,size_h,times):
     times += 1
     print "\nRound " + str(times)
